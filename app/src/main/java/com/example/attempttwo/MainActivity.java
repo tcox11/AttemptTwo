@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(List<Route> routes) {
                 // update recyclerView
                 adapter.setRoutes(routes);
-                Log.d("nothing", "git working?");
             }
         });
 

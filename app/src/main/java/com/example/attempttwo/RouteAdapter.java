@@ -29,10 +29,10 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     public void onBindViewHolder(@NonNull RouteHolder holder, int position) {
         Log.d("hello", String.valueOf(position));
         Route currentRoute = routes.get(position);
-        // MORE ELEGANT SOLUTION FOR NAMING ROUTES
         String currentRouteName = currentRoute.getHoldColour() + " " + currentRoute.getGrade();
         holder.textViewRouteName.setText(currentRouteName);
-        // SETTING CHECKBOXES
+        holder.checkBoxWatched.setChecked(currentRoute.getWatchlist()==1);
+        holder.checkBoxCompleted.setChecked(currentRoute.getCompleted()==1);
 
     }
 
