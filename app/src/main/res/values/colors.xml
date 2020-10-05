@@ -7,4 +7,9 @@
     <color name="colorAccent">#D81B60</color>
     <color name="v0color">#ADADAD</color>
     <color name="v1color">#54C258</color>
+    <color name="v2color">#FF9800</color>
+    <color name="v3color">#FFEB3B</color>
+    <color name="v4color">#FF1000</color>
+    <color name="v5color">#FAFAFA</color>
+    <color name="v6color">#000000</color>
 </resources>

@@ -8,8 +8,11 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.List;
@@ -17,29 +20,42 @@ import java.util.List;
 // Made a new xml file for main activity. Don't know if it needs anythin added as it is the main xml
 public class MainActivity extends AppCompatActivity {
 
-    private RouteViewModel routeViewModel;
+    private Button goToViewAllRoutes;
+    private Button goToRoutesByGrade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = findViewById(R.id.route_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-
-        final RouteAdapter adapter = new RouteAdapter();
-        recyclerView.setAdapter(adapter);
-
-        routeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(RouteViewModel.class);
-        routeViewModel.getAllRoutes().observe(this, new Observer<List<Route>>() {
+        goToViewAllRoutes = (Button) findViewById(R.id.goToAllRoutes);
+        goToViewAllRoutes.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onChanged(List<Route> routes) {
-                // update recyclerView
-                adapter.setRoutes(routes);
+            public void onClick(View v){
+                openViewAllRoutes();
             }
+
         });
 
+        goToRoutesByGrade = (Button) findViewById(R.id.goToRoutesByGrade);
+        goToRoutesByGrade.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openRoutesByGrade();
+            }
+
+        });
+
+    }
+
+    private void openViewAllRoutes() {
+        Intent intent = new Intent(this, RouteListAll.class);
+        startActivity(intent);
+    }
+
+    private void openRoutesByGrade(){
+        Intent intent = new Intent(this, RoutesByGrade.class);
+        startActivity(intent);
     }
 
 
