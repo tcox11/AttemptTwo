@@ -33,21 +33,46 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     @Override
     public void onBindViewHolder(@NonNull RouteHolder holder, int position) {
         Route currentRoute = routes.get(position);
-        String currentRouteName = currentRoute.getArea() + ", "
-                                  + currentRoute.getHoldColour().toLowerCase() + " holds, "
-                                  + currentRoute.getGrade();
-        String colorName = currentRoute.getGrade().substring(0,2).toLowerCase() + "color";
+        setName(holder, currentRoute);
+        setBorder(holder, currentRoute);
+        setHoldIcon(holder, currentRoute);
+        holder.checkBoxWatched.setChecked(currentRoute.getWatchlist()==1);
+        holder.checkBoxCompleted.setChecked(currentRoute.getCompleted()==1);
+
+    }
+
+    private void setName(RouteHolder holder, Route route){
+        String routeName = route.getArea() + ", "
+                + route.getHoldColour().toLowerCase() + " holds, "
+                + route.getGrade();
+        holder.textViewRouteName.setText(routeName);
+
+    }
+
+    private void setBorder(RouteHolder holder, Route route){
+        String colorName = route.getGrade().substring(0,2).toLowerCase() + "color";
         int colorID = MyUtilites.getResId(colorName, R.color.class);
         if (colorID == -1){
             Log.d("hello", "missing colour");
             holder.frameLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
         } else {
             holder.frameLayout.setBackgroundResource(colorID);
-            //holder.holdIcon.setImageResource(R.drawable.completed_button_clicked);
         }
-        holder.textViewRouteName.setText(currentRouteName);
-        holder.checkBoxWatched.setChecked(currentRoute.getWatchlist()==1);
-        holder.checkBoxCompleted.setChecked(currentRoute.getCompleted()==1);
+
+    }
+
+    private void setHoldIcon(RouteHolder holder, Route route){
+        String colorName = route.getHoldColour().toLowerCase().replaceAll("/", "") + "_hold";
+        int holdID = MyUtilites.getResId(colorName, R.drawable.class);
+        if(holdID == -1){
+            Log.d("hello", "missing hold icon");
+            holder.holdIcon.setImageResource(R.drawable.hold_image_ph);
+        } else {
+            holder.holdIcon.setImageResource(holdID);
+        }
+
+        holder.holdIcon.getLayoutParams().height = (int) holder.holdIcon.getResources().getDimension(R.dimen.hold_icon_height);
+        holder.holdIcon.getLayoutParams().width = (int) holder.holdIcon.getResources().getDimension(R.dimen.hold_icon_width);
 
     }
 
