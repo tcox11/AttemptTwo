@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.List;
 
@@ -27,6 +28,19 @@ public abstract class RouteList extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         routeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(RouteViewModel.class);
         setAdapterRoutes(adapter);
+
+        adapter.setOnItemWatchedClickListener(new RouteAdapter.OnWatchedClickListener() {
+            @Override
+            public void onItemClick(Route route) {
+
+                Log.d("clicked", "clicked in list");
+                route.setWatchlist(1-route.getWatchlist());
+                routeViewModel.update(route);
+            }
+        });
+
+        
+
 
     }
 

@@ -19,6 +19,7 @@ public class Route {
     private Integer watchlist;
     private Integer completed;
 
+
     public Route(String area, String holdColour, String grade, String notes, Integer active,
                  Integer watchlist, Integer completed) {
         this.area = area;
@@ -27,6 +28,15 @@ public class Route {
         this.notes = notes;
         this.active = active;
         this.watchlist = watchlist;
+        this.completed = completed;
+    }
+
+
+    public void setWatchlist(Integer watchlist) {
+        this.watchlist = watchlist;
+    }
+
+    public void setCompleted(Integer completed) {
         this.completed = completed;
     }
 
@@ -65,4 +75,5 @@ public class Route {
     public Integer getCompleted() {
         return completed;
     }
+
 }

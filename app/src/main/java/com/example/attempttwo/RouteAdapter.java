@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder> {
     private List<Route> routes = new ArrayList<>();
+    private OnWatchedClickListener watchedListener;
 
     @NonNull
     @Override
@@ -37,10 +39,16 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
         setBorder(holder, currentRoute);
         setHoldIcon(holder, currentRoute);
         setAreaIcon(holder, currentRoute);
-        holder.checkBoxWatched.setChecked(currentRoute.getWatchlist()==1);
-        holder.checkBoxCompleted.setChecked(currentRoute.getCompleted()==1);
+        if(position == 1) {
+            Log.d("clicked", String.valueOf(currentRoute.getWatchlist() == 1));
+            Log.d("clicked", String.valueOf(currentRoute.getWatchlist()));
+        }
+        holder.checkBoxWatched.setChecked(currentRoute.getWatchlist() == 1);
+        holder.checkBoxCompleted.setChecked(currentRoute.getCompleted() == 1);
 
     }
+
+
 
     private void setName(RouteHolder holder, Route route){
         String routeName = "Route #" + String.valueOf(route.getId());
@@ -97,6 +105,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     }
 
     public void setRoutes(List<Route> routes){
+
         this.routes = routes;
         notifyDataSetChanged();
     }
@@ -117,6 +126,28 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
             frameLayout = itemView.findViewById(R.id.card_frame_route);
             holdIcon = itemView.findViewById(R.id.hold_icon);
             areaIcon = itemView.findViewById(R.id.area_icon);
+            checkBoxWatched.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("clicked", "clicked in adapater");
+                    int position = getAdapterPosition();
+                    if(watchedListener != null && position != RecyclerView.NO_POSITION){
+                        watchedListener.onItemClick(routes.get(position));
+                    }
+                }
+            });
+
         }
     }
+
+    public interface OnWatchedClickListener  {
+        void onItemClick(Route route);
+
+    }
+
+
+    public void setOnItemWatchedClickListener(OnWatchedClickListener listener){
+        this.watchedListener = listener;
+    }
+
 }
