@@ -42,9 +42,8 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     }
 
     private void setName(RouteHolder holder, Route route){
-        String routeName = route.getArea() + ", "
-                + route.getHoldColour().toLowerCase() + " holds, "
-                + route.getGrade();
+        String routeName = "Route #" + String.valueOf(route.getId()) + " ("
+                            + route.getArea() + ")";
         holder.textViewRouteName.setText(routeName);
 
     }
