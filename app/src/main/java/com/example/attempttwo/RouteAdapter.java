@@ -76,13 +76,14 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     }
 
     private void setAreaIcon(RouteHolder holder, Route route){
-        String colorName = route.getArea().toLowerCase().replaceAll("/", "") + "_hold";
-        int holdID = MyUtilites.getResId(colorName, R.drawable.class);
-        if(holdID == -1){
+        String areaName = route.getArea().toLowerCase().replaceAll(" ", "") + "_area";
+        Log.d("area", areaName);
+        int areaID = MyUtilites.getResId(areaName, R.drawable.class);
+        if(areaID == -1){
             Log.d("hello", "missing hold icon");
             holder.areaIcon.setImageResource(R.drawable.hold_image_ph);
         } else {
-            holder.areaIcon.setImageResource(holdID);
+            holder.areaIcon.setImageResource(areaID);
         }
 
         holder.areaIcon.getLayoutParams().height = (int) holder.areaIcon.getResources().getDimension(R.dimen.area_icon_height);
