@@ -12,12 +12,14 @@ public class RouteRepository {
     private RouteDao routeDao;
     private LiveData<List<Route>> allRoutes;
     private LiveData<List<String>> allGrades;
+    private LiveData<List<Route>> watchedRoutes;
 
     public RouteRepository(Application application){
         RouteDatabase database = RouteDatabase.getInstance(application);
         routeDao = database.routeDao();
         allRoutes = routeDao.getAllRoutes();
         allGrades = routeDao.getAllGrades();
+        watchedRoutes = routeDao.getWatchedRoutes();
 
     }
 
@@ -36,6 +38,8 @@ public class RouteRepository {
     public LiveData<List<Route>> getRoutesByGrade(String grade){
         return routeDao.getRoutesByGrade(grade);
     }
+
+    public LiveData<List<Route>> getWatchedRoutes(){ return watchedRoutes; };
 
     public LiveData<List<String>> getAllGrades(){
         return allGrades;

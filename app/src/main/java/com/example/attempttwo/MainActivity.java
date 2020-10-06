@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button goToViewAllRoutes;
     private Button goToRoutesByGrade;
+    private Button goToWatchedRoutes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+
+        goToWatchedRoutes = (Button) findViewById(R.id.goToWatchedRoutes);
+        goToWatchedRoutes.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openWatchedRoutes();
+            }
+
+        });
+
     }
 
     private void openViewAllRoutes() {
@@ -55,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void openRoutesByGrade(){
         Intent intent = new Intent(this, RoutesByGrade.class);
+        startActivity(intent);
+    }
+
+    private void openWatchedRoutes(){
+        Intent intent = new Intent(this, RouteListWatched.class);
         startActivity(intent);
     }
 

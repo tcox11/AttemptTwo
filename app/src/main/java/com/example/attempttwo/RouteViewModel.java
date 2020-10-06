@@ -13,12 +13,14 @@ public class RouteViewModel extends AndroidViewModel {
     private RouteRepository repository;
     private LiveData<List<Route>> allRoutes;
     private LiveData<List<String>> allGrades;
+    private LiveData<List<Route>> watchedRoutes;
 
     public RouteViewModel(@NonNull Application application) {
         super(application);
         repository = new RouteRepository(application);
         allRoutes = repository.getAllRoutes();
         allGrades = repository.getAllGrades();
+        watchedRoutes = repository.getWatchedRoutes();
     }
 
     public void insert(Route route){
@@ -38,5 +40,7 @@ public class RouteViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<String>> getAllGrades(){ return allGrades; }
+
+    public LiveData<List<Route>> getWatchedRoutes() {return watchedRoutes; };
 
 }
