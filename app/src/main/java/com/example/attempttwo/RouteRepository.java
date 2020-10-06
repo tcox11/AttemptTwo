@@ -11,11 +11,13 @@ public class RouteRepository {
 
     private RouteDao routeDao;
     private LiveData<List<Route>> allRoutes;
+    private LiveData<List<String>> allGrades;
 
     public RouteRepository(Application application){
         RouteDatabase database = RouteDatabase.getInstance(application);
         routeDao = database.routeDao();
         allRoutes = routeDao.getAllRoutes();
+        allGrades = routeDao.getAllGrades();
 
     }
 
@@ -29,6 +31,10 @@ public class RouteRepository {
 
     public LiveData<List<Route>> getAllRoutes(){
         return allRoutes;
+    }
+
+    public LiveData<List<String>> getAllGrades(){
+        return allGrades;
     }
 
     private static class UpdateRouteAsyncTask extends AsyncTask<Route, Void, Void>{

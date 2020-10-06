@@ -15,23 +15,29 @@
         <Button
 
             android:id="@+id/goToAllRoutes"
+            android:background="@color/cardColour"
             android:typeface="monospace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
-            android:text="View All Routes" />
+            android:text="View All Routes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         <Button
             android:id="@+id/goToRoutesByGrade"
+            android:background="@color/cardColour"
             android:typeface="monospace"
+            android:layout_marginTop="4dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View Routes By Grade" />
+            android:text="View Routes By Grade"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

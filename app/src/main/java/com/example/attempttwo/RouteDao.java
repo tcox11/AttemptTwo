@@ -20,4 +20,9 @@ public interface RouteDao {
     @Query("SELECT * FROM route_table ORDER BY grade ASC")
     LiveData<List<Route>> getAllRoutes();
 
+    // probably doesn't need to be live, except doing it the other needs async tasks which I dont
+    // bleddy understand
+    @Query("SELECT DISTINCT grade FROM route_table ORDER BY grade ASC")
+    LiveData<List<String>> getAllGrades();
+
 }

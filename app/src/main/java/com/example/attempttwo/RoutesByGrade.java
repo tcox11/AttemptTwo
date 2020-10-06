@@ -29,11 +29,11 @@ public class RoutesByGrade extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         routeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(RouteViewModel.class);
-        routeViewModel.getAllRoutes().observe(this, new Observer<List<Route>>() {
+        routeViewModel.getAllGrades().observe(this, new Observer<List<String>>() {
             @Override
-            public void onChanged(List<Route> routes) {
+            public void onChanged(List<String> grades) {
                 // update recyclerView
-                adapter.setRoutes(routes);
+                adapter.setGrades(grades);
             }
         });
     }

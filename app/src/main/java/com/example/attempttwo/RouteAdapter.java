@@ -98,7 +98,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
             textViewRouteName = itemView.findViewById(R.id.text_view_route_name);
             checkBoxWatched = itemView.findViewById(R.id.watchedCheckBox);
             checkBoxCompleted = itemView.findViewById(R.id.completedCheckBox);
-            frameLayout = itemView.findViewById(R.id.card_frame);
+            frameLayout = itemView.findViewById(R.id.card_frame_route);
             holdIcon = itemView.findViewById(R.id.hold_icon);
         }
     }
