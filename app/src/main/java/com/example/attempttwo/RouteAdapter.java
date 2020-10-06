@@ -36,14 +36,14 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
         setName(holder, currentRoute);
         setBorder(holder, currentRoute);
         setHoldIcon(holder, currentRoute);
+        setAreaIcon(holder, currentRoute);
         holder.checkBoxWatched.setChecked(currentRoute.getWatchlist()==1);
         holder.checkBoxCompleted.setChecked(currentRoute.getCompleted()==1);
 
     }
 
     private void setName(RouteHolder holder, Route route){
-        String routeName = "Route #" + String.valueOf(route.getId()) + " ("
-                            + route.getArea() + ")";
+        String routeName = "Route #" + String.valueOf(route.getId());
         holder.textViewRouteName.setText(routeName);
 
     }
@@ -75,6 +75,21 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
 
     }
 
+    private void setAreaIcon(RouteHolder holder, Route route){
+        String colorName = route.getArea().toLowerCase().replaceAll("/", "") + "_hold";
+        int holdID = MyUtilites.getResId(colorName, R.drawable.class);
+        if(holdID == -1){
+            Log.d("hello", "missing hold icon");
+            holder.areaIcon.setImageResource(R.drawable.hold_image_ph);
+        } else {
+            holder.areaIcon.setImageResource(holdID);
+        }
+
+        holder.areaIcon.getLayoutParams().height = (int) holder.areaIcon.getResources().getDimension(R.dimen.area_icon_height);
+        holder.areaIcon.getLayoutParams().width = (int) holder.areaIcon.getResources().getDimension(R.dimen.area_icon_width);
+
+    }
+
     @Override
     public int getItemCount() {
         return routes.size();
@@ -91,6 +106,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
         private CheckBox checkBoxCompleted;
         private FrameLayout frameLayout;
         private ImageView holdIcon;
+        private ImageView areaIcon;
 
         public RouteHolder(View itemView){
             super(itemView);
@@ -99,6 +115,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
             checkBoxCompleted = itemView.findViewById(R.id.completedCheckBox);
             frameLayout = itemView.findViewById(R.id.card_frame_route);
             holdIcon = itemView.findViewById(R.id.hold_icon);
+            areaIcon = itemView.findViewById(R.id.area_icon);
         }
     }
 }
