@@ -10,25 +10,12 @@ import android.os.Bundle;
 
 import java.util.List;
 
-public class RouteListWatched extends AppCompatActivity {
-
-    private RouteViewModel routeViewModel;
+public class RouteListWatched extends RouteList {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_route_list_all);
+    protected void setAdapterRoutes(final RouteAdapter adapter) {
 
-        RecyclerView recyclerView = findViewById(R.id.route_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-
-        final RouteAdapter adapter = new RouteAdapter();
-        recyclerView.setAdapter(adapter);
-
-        routeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(RouteViewModel.class);
         routeViewModel.getWatchedRoutes().observe(this, new Observer<List<Route>>() {
-            @Override
             public void onChanged(List<Route> routes) {
                 // update recyclerView
                 adapter.setRoutes(routes);
