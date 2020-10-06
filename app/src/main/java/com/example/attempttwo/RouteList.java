@@ -39,7 +39,17 @@ public abstract class RouteList extends AppCompatActivity {
             }
         });
 
-        
+        adapter.setOnItemCompletedClickListener(new RouteAdapter.OnCompletedClickListener() {
+            @Override
+            public void onItemClick(Route route) {
+
+                Log.d("clicked", "clicked in list");
+                route.setCompleted(1-route.getCompleted());
+                routeViewModel.update(route);
+            }
+        });
+
+
 
 
     }

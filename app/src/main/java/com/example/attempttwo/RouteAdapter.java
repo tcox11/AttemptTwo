@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder> {
     private List<Route> routes = new ArrayList<>();
     private OnWatchedClickListener watchedListener;
+    private OnCompletedClickListener completedListener;
 
     @NonNull
     @Override
@@ -39,10 +40,6 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
         setBorder(holder, currentRoute);
         setHoldIcon(holder, currentRoute);
         setAreaIcon(holder, currentRoute);
-        if(position == 1) {
-            Log.d("clicked", String.valueOf(currentRoute.getWatchlist() == 1));
-            Log.d("clicked", String.valueOf(currentRoute.getWatchlist()));
-        }
         holder.checkBoxWatched.setChecked(currentRoute.getWatchlist() == 1);
         holder.checkBoxCompleted.setChecked(currentRoute.getCompleted() == 1);
 
@@ -137,6 +134,17 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
                 }
             });
 
+            checkBoxCompleted.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("clicked", "clicked in adapater");
+                    int position = getAdapterPosition();
+                    if(completedListener != null && position != RecyclerView.NO_POSITION){
+                        completedListener.onItemClick(routes.get(position));
+                    }
+                }
+            });
+
         }
     }
 
@@ -144,10 +152,16 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
         void onItemClick(Route route);
 
     }
-
-
     public void setOnItemWatchedClickListener(OnWatchedClickListener listener){
         this.watchedListener = listener;
+    }
+
+    public interface OnCompletedClickListener  {
+        void onItemClick(Route route);
+
+    }
+    public void setOnItemCompletedClickListener(OnCompletedClickListener listener){
+        this.completedListener = listener;
     }
 
 }
