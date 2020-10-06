@@ -33,6 +33,10 @@ public class RouteRepository {
         return allRoutes;
     }
 
+    public LiveData<List<Route>> getRoutesByGrade(String grade){
+        return routeDao.getRoutesByGrade(grade);
+    }
+
     public LiveData<List<String>> getAllGrades(){
         return allGrades;
     }

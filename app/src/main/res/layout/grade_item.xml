@@ -19,17 +19,14 @@
         android:layout_margin="4dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cardColour"
         >
 
 
-        <TextView
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+        <Button
             android:ellipsize="end"
-
-            android:gravity="center_horizontal"
-            android:id="@+id/text_view_grade_name"
+            android:gravity="center"
+            android:id="@+id/button_each_grade"
+            android:background="@color/cardColour"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:typeface="monospace"

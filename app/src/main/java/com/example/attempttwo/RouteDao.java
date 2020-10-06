@@ -25,4 +25,7 @@ public interface RouteDao {
     @Query("SELECT DISTINCT grade FROM route_table ORDER BY grade ASC")
     LiveData<List<String>> getAllGrades();
 
+    @Query("SELECT * FROM route_table WHERE grade = :grade")
+    LiveData<List<Route>> getRoutesByGrade(String grade);
+
 }

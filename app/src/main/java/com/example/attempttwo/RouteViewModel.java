@@ -33,7 +33,10 @@ public class RouteViewModel extends AndroidViewModel {
         return allRoutes;
     }
 
-    public LiveData<List<String>> getAllGrades(){
-        return allGrades;
+    public LiveData<List<Route>> getRoutesByGrade(String grade){
+        return repository.getRoutesByGrade(grade);
     }
+
+    public LiveData<List<String>> getAllGrades(){ return allGrades; }
+
 }
