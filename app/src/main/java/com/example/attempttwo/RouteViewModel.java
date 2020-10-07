@@ -39,6 +39,14 @@ public class RouteViewModel extends AndroidViewModel {
         return repository.getRoutesByGrade(grade);
     }
 
+    public LiveData<List<Integer>>  getActiveRouteSums(){
+        return repository.getActiveRouteSums();
+    }
+
+    public LiveData<List<Integer>> getCompletedRouteSums(){
+        return repository.getCompletedRouteSums();
+    }
+
     public LiveData<List<String>> getAllGrades(){ return allGrades; }
 
     public LiveData<List<Route>> getWatchedRoutes() {return watchedRoutes; };

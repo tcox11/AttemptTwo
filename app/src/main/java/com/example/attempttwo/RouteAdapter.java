@@ -54,14 +54,21 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     }
 
     private void setBorder(RouteHolder holder, Route route){
-        String colorName = route.getGrade().substring(0,2).toLowerCase() + "color";
-        int colorID = MyUtilites.getResId(colorName, R.color.class);
-        if (colorID == -1){
-            Log.d("hello", "missing colour");
+        String colorName;
+
+        if(route.getGrade().length() > 2) {
+            colorName = route.getGrade().substring(0, 2).toLowerCase() + "color";
+            int colorID = MyUtilites.getResId(colorName, R.color.class);
+            if (colorID == -1){
+                Log.d("hello", "missing colour");
+                holder.frameLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            } else {
+                holder.frameLayout.setBackgroundResource(colorID);
+            }
+        }else{
             holder.frameLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        } else {
-            holder.frameLayout.setBackgroundResource(colorID);
         }
+
 
     }
 
@@ -70,7 +77,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
         int holdID = MyUtilites.getResId(colorName, R.drawable.class);
         if(holdID == -1){
             Log.d("hello", "missing hold icon");
-            holder.holdIcon.setImageResource(R.drawable.hold_image_ph);
+            holder.holdIcon.setImageResource(R.drawable.missing_hold);
         } else {
             holder.holdIcon.setImageResource(holdID);
         }
@@ -86,7 +93,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
         int areaID = MyUtilites.getResId(areaName, R.drawable.class);
         if(areaID == -1){
             Log.d("hello", "missing hold icon");
-            holder.areaIcon.setImageResource(R.drawable.hold_image_ph);
+            //leave blank
         } else {
             holder.areaIcon.setImageResource(areaID);
         }

@@ -19,18 +19,41 @@
         android:layout_marginLeft="4dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardColour"
         >
 
 
         <Button
             android:ellipsize="end"
             android:gravity="center"
+            android:minHeight="32dp"
             android:id="@+id/button_each_grade"
             android:background="@color/cardColour"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:typeface="monospace"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:layout_alignParentEnd="true"
+            android:id="@+id/grade_progress_text"
+            android:layout_width="match_parent"
+            android:text="Progress: 1/10"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_each_grade"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+        <ProgressBar
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:id="@+id/grade_progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:indeterminate="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:layout_below="@id/grade_progress_text"
+            android:progress="10"/>
 
 
 

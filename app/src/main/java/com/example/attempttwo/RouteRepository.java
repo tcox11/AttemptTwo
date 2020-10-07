@@ -45,6 +45,14 @@ public class RouteRepository {
         return allGrades;
     }
 
+    public LiveData<List<Integer>> getActiveRouteSums(){
+        return routeDao.getActiveRouteSums();
+    }
+
+    public LiveData<List<Integer>> getCompletedRouteSums(){
+        return routeDao.getCompletedRouteSums();
+    }
+
     private static class UpdateRouteAsyncTask extends AsyncTask<Route, Void, Void>{
         private RouteDao routeDao;
 

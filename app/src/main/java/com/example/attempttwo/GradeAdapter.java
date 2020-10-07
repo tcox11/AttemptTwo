@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,8 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class GradeAdapter extends RecyclerView.Adapter <GradeAdapter.GradeHolder>{
 
-    private List<Route> routes = new ArrayList<>();
     private List<String> grades = new ArrayList<>();
+    private List<Integer> completedRoutes = new ArrayList<>();
+    private List<Integer> totalRoutes = new ArrayList<>();
 
     @NonNull
     @Override
@@ -37,8 +39,24 @@ public class GradeAdapter extends RecyclerView.Adapter <GradeAdapter.GradeHolder
         final String currentGrade = grades.get(position);
         setBorderFromString(holder, currentGrade);
 
+        String progressMessage;
+        Integer progressValue;
+        //HOPEFULLY THIS CAN BE TIDIED UP FIGURED OUT HOW TO RETURN OBJECT FROM DAO QUERY
+        if(grades.size() == completedRoutes.size() && grades.size() == totalRoutes.size()){
+            progressMessage = "Progress: " + String.valueOf(completedRoutes.get(position))
+                              + "/" + String.valueOf(totalRoutes.get(position));
+            progressValue = completedRoutes.get(position) * 100 / totalRoutes.get(position);
+        } else {
+            progressMessage = "Unable to show progress.";
+            progressValue = 0;
+        }
+        holder.progressText.setText(progressMessage);
+        holder.progressBar.setProgress(progressValue);
+
+
+
+
         holder.buttonGrade.setText(currentGrade);
-        // set stuff here
         holder.buttonGrade.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -50,8 +68,7 @@ public class GradeAdapter extends RecyclerView.Adapter <GradeAdapter.GradeHolder
         });
     }
 
-    private void openRoutesByGradeList(){
-    }
+
 
 
     private void setBorderFromString(GradeAdapter.GradeHolder holder, String grade){
@@ -71,24 +88,39 @@ public class GradeAdapter extends RecyclerView.Adapter <GradeAdapter.GradeHolder
         return grades.size();
     }
 
-    public void setRoutes(List<Route> routes){
-        this.routes = routes;
+
+    public void setGrades(List<String> grades){
+        //IF THE LENGTH OF THESE THREE FUNCTION INPUTS VARIES, SOMETHING HAS GONE WRONG
+        //HOPEFULLY THIS CAN BE TIDIED UP FIGURED OUT HOW TO RETURN OBJECT FROM DAO QUERY
+        this.grades = grades;
         notifyDataSetChanged();
     }
 
-    public void setGrades(List<String> grades){
-        this.grades = grades;
+    public void setCompleted(List<Integer> completedRoutes){
+        //IF THE LENGTH OF THESE THREE FUNCTION INPUTS VARIES, SOMETHING HAS GONE WRONG
+        this.completedRoutes = completedRoutes;
+        notifyDataSetChanged();
+    }
+
+
+    public void setTotalRoutes(List<Integer> totalRoutes){
+        //IF THE LENGTH OF THESE THREE FUNCTION INPUTS VARIES, SOMETHING HAS GONE WRONG
+        this.totalRoutes = totalRoutes;
         notifyDataSetChanged();
     }
 
     class GradeHolder extends RecyclerView.ViewHolder{
         private Button buttonGrade;
         private FrameLayout frameLayout;
+        private TextView progressText;
+        private ProgressBar progressBar;
 
         public GradeHolder(View itemView){
             super(itemView);
             buttonGrade = (Button) itemView.findViewById(R.id.button_each_grade);
             frameLayout = itemView.findViewById(R.id.card_frame_grade);
+            progressText = itemView.findViewById(R.id.grade_progress_text);
+            progressBar = itemView.findViewById(R.id.grade_progress_bar);
         }
     }
 }
