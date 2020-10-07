@@ -53,6 +53,10 @@ public class RouteRepository {
         return routeDao.getCompletedRouteSums();
     }
 
+    public LiveData<Integer> getWatchedUncompletedSum(){
+        return routeDao.getWatchedUncompletedSum();
+    }
+
     private static class UpdateRouteAsyncTask extends AsyncTask<Route, Void, Void>{
         private RouteDao routeDao;
 

@@ -20,7 +20,8 @@ public interface RouteDao {
     @Query("SELECT * FROM route_table WHERE active = 1 ORDER BY id ASC")
     LiveData<List<Route>> getAllRoutes();
 
-
+    @Query("SELECT SUM(watchlist) FROM route_table  WHERE active = 1 AND completed = 0")
+    LiveData<Integer> getWatchedUncompletedSum();
 
     @Query("SELECT * FROM route_table WHERE grade = :grade AND active = 1 ORDER BY grade ASC")
     LiveData<List<Route>> getRoutesByGrade(String grade);

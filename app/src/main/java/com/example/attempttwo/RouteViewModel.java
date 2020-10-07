@@ -49,6 +49,10 @@ public class RouteViewModel extends AndroidViewModel {
 
     public LiveData<List<String>> getAllGrades(){ return allGrades; }
 
-    public LiveData<List<Route>> getWatchedRoutes() {return watchedRoutes; };
+    public LiveData<List<Route>> getWatchedRoutes() {return watchedRoutes; }
+
+    public LiveData<Integer> getWatchedUncompletedSum(){
+        return repository.getWatchedUncompletedSum();
+    }
 
 }

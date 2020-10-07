@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private Button goToViewAllRoutes;
     private Button goToRoutesByGrade;
     private Button goToWatchedRoutes;
+    private TextView watchedMessage;
+    private RouteViewModel routeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,16 @@ public class MainActivity extends AppCompatActivity {
                 openWatchedRoutes();
             }
 
+        });
+
+        watchedMessage = (TextView) findViewById(R.id.mm_watchlist_message);
+        routeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(RouteViewModel.class);
+
+        routeViewModel.getWatchedUncompletedSum().observe(this, new Observer<Integer>() {
+            public void onChanged(Integer watchedRouteSum) {
+                // update recyclerView
+                watchedMessage.setText("(Incomplete routes: " + String.valueOf(watchedRouteSum) + ")");
+            }
         });
 
     }
