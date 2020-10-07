@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#000000</color>
-    <color name="cardColour">#F7FFF0</color>
-    <color name="backgroundColour">#EAF3D8</color>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="cardColour">#A8DADC</color>
+    <color name="backgroundColour">#F1FAEE</color>
+    <color name="colorPrimary">#457b9d</color>
+    <color name="colorPrimaryDark">#09162B</color>
+    <color name="colorAccent">#1D3557</color>
     <color name="v0color">#ADADAD</color>
     <color name="v1color">#54C258</color>
     <color name="v2color">#FF9800</color>
@@ -13,4 +13,6 @@
     <color name="v4color">#FF1000</color>
     <color name="v5color">#FAFAFA</color>
     <color name="v6color">#000000</color>
+    <color name="textColor">#1D3557</color>
+
 </resources>
