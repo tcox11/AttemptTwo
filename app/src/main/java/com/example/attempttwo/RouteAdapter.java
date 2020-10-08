@@ -40,7 +40,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     .inflate(R.layout.route_item, parent, false);
             return new RouteHolder(itemView);
         }
-}
+    }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
@@ -51,22 +51,15 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             Boolean emptyArea = Boolean.FALSE;
             RouteHeaderHolder holder = (RouteHeaderHolder) viewHolder;
 
-            if (position == getItemCount()-1){
+            if (position == getItemCount() - 1) {
                 // checks if last item is header, in which case removes from screen
                 emptyArea = Boolean.TRUE;
-            } else if (position < getItemCount()-1) {
-                // checks if next is header, in which case removes from screen
-                if(routes.get(position+1).getHeaderType() == 1){
-                    emptyArea = Boolean.TRUE;
-                }
+            } else if (position < getItemCount() - 1 && routes.get(position + 1).getHeaderType() == 1) {
+                //checks for two headers in a row
+                emptyArea = Boolean.TRUE;
             }
 
-            if(emptyArea){
-                RecyclerView.LayoutParams param = (RecyclerView.LayoutParams)holder.headerCardView.getLayoutParams();
-                param.height = 0;
-                holder.headerCardView.setLayoutParams(param);
-
-            }else{
+            if (!emptyArea) {
                 holder.textViewHeader.setText(currentRoute.getArea());
             }
         } else {
@@ -88,21 +81,19 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
 
-
-
-    private void setName(RouteHolder holder, Route route){
+    private void setName(RouteHolder holder, Route route) {
         String routeName = "Route #" + String.valueOf(route.getId());
         holder.textViewRouteName.setText(routeName);
 
     }
 
-    private void setBorder(RouteHolder holder, Route route){
+    private void setBorder(RouteHolder holder, Route route) {
         String colorName;
 
-        if(route.getGrade().length() > 2) {
+        if (route.getGrade().length() > 2) {
             colorName = route.getGrade().substring(0, 2).toLowerCase() + "color";
             int colorID = MyUtilites.getResId(colorName, R.color.class);
-            if (colorID == -1){
+            if (colorID == -1) {
                 Log.d("hello", "missing colour");
                 holder.frameLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
             } else {
@@ -110,7 +101,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 Log.d("hello", "colour set correctly: " + colorName);
                 holder.frameLayout.setBackgroundResource(colorID);
             }
-        }else{
+        } else {
             Log.d("hello", "gradeLength too short");
             holder.frameLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
@@ -118,10 +109,10 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     }
 
-    private void setHoldIcon(RouteHolder holder, Route route){
+    private void setHoldIcon(RouteHolder holder, Route route) {
         String colorName = route.getHoldColour().toLowerCase().replaceAll("/", "") + "_hold";
         int holdID = MyUtilites.getResId(colorName, R.drawable.class);
-        if(holdID == -1){
+        if (holdID == -1) {
             Log.d("hello", "missing hold icon");
             holder.holdIcon.setImageResource(R.drawable.missing_hold);
         } else {
@@ -133,11 +124,11 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     }
 
-    private void setAreaIcon(RouteHolder holder, Route route){
+    private void setAreaIcon(RouteHolder holder, Route route) {
         String areaName = route.getArea().toLowerCase().replaceAll(" ", "") + "_area";
         Log.d("area", areaName);
         int areaID = MyUtilites.getResId(areaName, R.drawable.class);
-        if(areaID == -1){
+        if (areaID == -1) {
             Log.d("hello", "missing hold icon");
             //leave blank
         } else {
@@ -154,16 +145,17 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return routes.size();
     }
 
-    public void setRoutes(List<Route> routes){
+    public void setRoutes(List<Route> routes) {
 
         this.routes = routes;
         notifyDataSetChanged();
     }
 
-    class RouteHeaderHolder extends RecyclerView.ViewHolder{
+    class RouteHeaderHolder extends RecyclerView.ViewHolder {
         private TextView textViewHeader;
         private CardView headerCardView;
-        public RouteHeaderHolder(View itemView){
+
+        public RouteHeaderHolder(View itemView) {
             super(itemView);
             textViewHeader = itemView.findViewById(R.id.route_header);
             headerCardView = itemView.findViewById(R.id.header_card_view);
@@ -171,7 +163,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     }
 
-    class RouteHolder extends RecyclerView.ViewHolder{
+    class RouteHolder extends RecyclerView.ViewHolder {
         private TextView textViewRouteName;
         private CheckBox checkBoxWatched;
         private CheckBox checkBoxCompleted;
@@ -179,7 +171,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private ImageView holdIcon;
         private ImageView areaIcon;
 
-        public RouteHolder(View itemView){
+        public RouteHolder(View itemView) {
             super(itemView);
             textViewRouteName = itemView.findViewById(R.id.text_view_route_name);
             checkBoxWatched = itemView.findViewById(R.id.watchedCheckBox);
@@ -192,7 +184,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 public void onClick(View v) {
                     Log.d("clicked", "clicked in adapater");
                     int position = getAdapterPosition();
-                    if(watchedListener != null && position != RecyclerView.NO_POSITION){
+                    if (watchedListener != null && position != RecyclerView.NO_POSITION) {
                         watchedListener.onItemClick(routes.get(position));
                     }
                 }
@@ -203,7 +195,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 public void onClick(View v) {
                     Log.d("clicked", "clicked in adapater");
                     int position = getAdapterPosition();
-                    if(completedListener != null && position != RecyclerView.NO_POSITION){
+                    if (completedListener != null && position != RecyclerView.NO_POSITION) {
                         completedListener.onItemClick(routes.get(position));
                     }
                 }
@@ -212,19 +204,21 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    public interface OnWatchedClickListener  {
+    public interface OnWatchedClickListener {
         void onItemClick(Route route);
 
     }
-    public void setOnItemWatchedClickListener(OnWatchedClickListener listener){
+
+    public void setOnItemWatchedClickListener(OnWatchedClickListener listener) {
         this.watchedListener = listener;
     }
 
-    public interface OnCompletedClickListener  {
+    public interface OnCompletedClickListener {
         void onItemClick(Route route);
 
     }
-    public void setOnItemCompletedClickListener(OnCompletedClickListener listener){
+
+    public void setOnItemCompletedClickListener(OnCompletedClickListener listener) {
         this.completedListener = listener;
     }
 
