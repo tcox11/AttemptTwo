@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder> {
+public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Route> routes = new ArrayList<>();
     private OnWatchedClickListener watchedListener;
     private OnCompletedClickListener completedListener;
@@ -28,23 +28,45 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
 
     @NonNull
     @Override
-    public RouteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.route_item, parent, false);
-        return new RouteHolder(itemView);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        if (viewType == 1) {
+            View itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.route_header_item, parent, false);
+            return new RouteHeaderHolder(itemView);
+        } else {
+            View itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.route_item, parent, false);
+            return new RouteHolder(itemView);
+        }
 }
 
     @Override
-    public void onBindViewHolder(@NonNull RouteHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
+        int type = getItemViewType(position);
         Route currentRoute = routes.get(position);
-        setName(holder, currentRoute);
-        setBorder(holder, currentRoute);
-        setHoldIcon(holder, currentRoute);
-        setAreaIcon(holder, currentRoute);
-        holder.checkBoxWatched.setChecked(currentRoute.getWatchlist() == 1);
-        holder.checkBoxCompleted.setChecked(currentRoute.getCompleted() == 1);
+        if (type == 1) {
+            RouteHeaderHolder holder = (RouteHeaderHolder) viewHolder;
+            holder.textViewHeader.setText(currentRoute.getArea());
+            // your logic here
+        } else {
+            RouteHolder holder = (RouteHolder) viewHolder;
+            setName(holder, currentRoute);
+            setBorder(holder, currentRoute);
+            setHoldIcon(holder, currentRoute);
+            setAreaIcon(holder, currentRoute);
+            holder.checkBoxWatched.setChecked(currentRoute.getWatchlist() == 1);
+            holder.checkBoxCompleted.setChecked(currentRoute.getCompleted() == 1);
+        }
+
 
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        return routes.get(position).getHeaderType();
+    }
+
 
 
 
@@ -116,6 +138,15 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
 
         this.routes = routes;
         notifyDataSetChanged();
+    }
+
+    class RouteHeaderHolder extends RecyclerView.ViewHolder{
+        private TextView textViewHeader;
+        public RouteHeaderHolder(View itemView){
+            super(itemView);
+            textViewHeader = itemView.findViewById(R.id.route_header);
+        }
+
     }
 
     class RouteHolder extends RecyclerView.ViewHolder{

@@ -17,10 +17,10 @@ public interface RouteDao {
     @Insert
     void insert(Route route);
 
-    @Query("SELECT * FROM route_table WHERE active = 1 ORDER BY id ASC")
+    @Query("SELECT * FROM route_table WHERE active = 1 OR headerType = 1 ORDER BY area ASC, headerType DESC, id ASC")
     LiveData<List<Route>> getAllRoutes();
 
-    @Query("SELECT * FROM route_table WHERE grade = :grade AND active = 1 ORDER BY grade ASC")
+    @Query("SELECT * FROM route_table WHERE grade = :grade AND active = 1 OR headerType = 1 ORDER BY area ASC, headerType DESC, id ASC")
     LiveData<List<Route>> getRoutesByGrade(String grade);
 
     @Query("SELECT * FROM route_table WHERE active = 1 AND watchlist = 1 ORDER BY grade ASC")

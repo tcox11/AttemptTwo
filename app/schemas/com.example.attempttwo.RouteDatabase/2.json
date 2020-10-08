@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "a29e100c2798665dd838f80ab1101eb3",
+    "identityHash": "8215a74c35d022606169d69697b1abca",
     "entities": [
       {
         "tableName": "route_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `area` TEXT, `holdColour` TEXT, `grade` TEXT, `notes` TEXT, `active` INTEGER, `watchlist` INTEGER, `completed` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `area` TEXT, `holdColour` TEXT, `grade` TEXT, `notes` TEXT, `active` INTEGER, `watchlist` INTEGER, `completed` INTEGER, `headerType` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
@@ -55,6 +55,12 @@
             "columnName": "completed",
             "affinity": "INTEGER",
             "notNull": false
+          },
+          {
+            "fieldPath": "headerType",
+            "columnName": "headerType",
+            "affinity": "INTEGER",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -70,7 +76,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a29e100c2798665dd838f80ab1101eb3')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8215a74c35d022606169d69697b1abca')"
     ]
   }
 }

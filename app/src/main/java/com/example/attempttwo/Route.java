@@ -18,10 +18,11 @@ public class Route {
     private Integer active;
     private Integer watchlist;
     private Integer completed;
+    private Integer headerType;
 
 
     public Route(String area, String holdColour, String grade, String notes, Integer active,
-                 Integer watchlist, Integer completed) {
+                 Integer watchlist, Integer completed, Integer headerType) {
         this.area = area;
         this.holdColour = holdColour;
         this.grade = grade;
@@ -29,6 +30,8 @@ public class Route {
         this.active = active;
         this.watchlist = watchlist;
         this.completed = completed;
+        this.headerType = headerType;
+
     }
 
 
@@ -75,5 +78,8 @@ public class Route {
     public Integer getCompleted() {
         return completed;
     }
+
+    public Integer getHeaderType() { return headerType; }
+
 
 }

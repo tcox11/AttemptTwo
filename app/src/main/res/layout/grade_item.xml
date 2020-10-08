@@ -41,7 +41,6 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:minHeight="40dp"
-                    android:text="Example Text"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/textColor"
                     android:typeface="monospace" />
