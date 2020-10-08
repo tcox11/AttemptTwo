@@ -61,6 +61,8 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             if (!emptyArea) {
                 holder.textViewHeader.setText(currentRoute.getArea());
+            } else {
+                holder.textViewHeader.setText("");
             }
         } else {
             RouteHolder holder = (RouteHolder) viewHolder;
