@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,10 +46,29 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
         int type = getItemViewType(position);
         Route currentRoute = routes.get(position);
+
         if (type == 1) {
+            Boolean emptyArea = Boolean.FALSE;
             RouteHeaderHolder holder = (RouteHeaderHolder) viewHolder;
-            holder.textViewHeader.setText(currentRoute.getArea());
-            // your logic here
+
+            if (position == getItemCount()-1){
+                // checks if last item is header, in which case removes from screen
+                emptyArea = Boolean.TRUE;
+            } else if (position < getItemCount()-1) {
+                // checks if next is header, in which case removes from screen
+                if(routes.get(position+1).getHeaderType() == 1){
+                    emptyArea = Boolean.TRUE;
+                }
+            }
+
+            if(emptyArea){
+                RecyclerView.LayoutParams param = (RecyclerView.LayoutParams)holder.headerCardView.getLayoutParams();
+                param.height = 0;
+                holder.headerCardView.setLayoutParams(param);
+
+            }else{
+                holder.textViewHeader.setText(currentRoute.getArea());
+            }
         } else {
             RouteHolder holder = (RouteHolder) viewHolder;
             setName(holder, currentRoute);
@@ -142,9 +162,11 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     class RouteHeaderHolder extends RecyclerView.ViewHolder{
         private TextView textViewHeader;
+        private CardView headerCardView;
         public RouteHeaderHolder(View itemView){
             super(itemView);
             textViewHeader = itemView.findViewById(R.id.route_header);
+            headerCardView = itemView.findViewById(R.id.header_card_view);
         }
 
     }
