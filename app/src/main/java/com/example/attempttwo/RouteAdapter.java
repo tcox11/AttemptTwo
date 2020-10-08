@@ -25,13 +25,14 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     private OnWatchedClickListener watchedListener;
     private OnCompletedClickListener completedListener;
 
+
     @NonNull
     @Override
     public RouteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.route_item, parent, false);
         return new RouteHolder(itemView);
-    }
+}
 
     @Override
     public void onBindViewHolder(@NonNull RouteHolder holder, int position) {
@@ -63,9 +64,12 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
                 Log.d("hello", "missing colour");
                 holder.frameLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
             } else {
+
+                Log.d("hello", "colour set correctly: " + colorName);
                 holder.frameLayout.setBackgroundResource(colorID);
             }
         }else{
+            Log.d("hello", "gradeLength too short");
             holder.frameLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
 

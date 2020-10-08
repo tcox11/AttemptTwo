@@ -6,72 +6,77 @@
     android:layout_marginStart="4dp"
     android:layout_marginTop="2dp"
     android:layout_marginEnd="4dp"
+    android:id="@+id/card_frame_route"
     android:layout_marginBottom="2dp"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="2dp">
 
     <FrameLayout
-        android:id="@+id/card_frame_route"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:background="@color/cardColour"
-        android:padding="8dp">
-
-        <ImageView
-            android:id="@+id/area_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="4dp"
-            android:gravity="center_vertical" />
-
-
-        <ImageView
-            android:id="@+id/hold_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/area_icon"
-            android:layout_marginStart="4dp"
-            android:gravity="center_vertical" />
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp">
 
 
         <TextView
             android:id="@+id/text_view_route_name"
-            android:layout_width="wrap_content"
+            android:background="@color/cardColour"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_toStartOf="@id/watchedCheckBox"
-            android:layout_toEndOf="@id/hold_icon"
+            android:minHeight="60dp"
+            android:gravity="center"
+            android:text="ass"
             android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/textColor"
             android:typeface="monospace" />
 
-        <CheckBox
-            android:id="@+id/watchedCheckBox"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/completedCheckBox"
-            android:button="@drawable/watched_checkbox" />
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp">
+
+            <ImageView
+                android:src="@drawable/hold_image_ph"
+                android:id="@+id/area_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="12dp"
+                android:gravity="center_vertical" />
 
 
-        <CheckBox
-            android:id="@+id/completedCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:button="@drawable/completed_checkbox" />
+            <ImageView
+                android:src="@drawable/hold_image_ph"
+                android:id="@+id/hold_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/area_icon"
+                android:gravity="center_vertical" />
 
-    </RelativeLayout>
+            <CheckBox
+                android:id="@+id/watchedCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/completedCheckBox"
+                android:button="@drawable/watched_checkbox" />
 
+
+            <CheckBox
+                android:id="@+id/completedCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:button="@drawable/completed_checkbox" />
+
+
+
+        </RelativeLayout>
+
+
+
+
+    </FrameLayout>
 </androidx.cardview.widget.CardView>
