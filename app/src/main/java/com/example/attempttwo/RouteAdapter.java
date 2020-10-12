@@ -67,7 +67,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
         } else {
             RouteHolder holder = (RouteHolder) viewHolder;
-            setName(holder, currentRoute);
+            setNumber(holder, currentRoute);
             setBorder(holder, currentRoute);
             setHoldIcon(holder, currentRoute);
             //setAreaIcon(holder, currentRoute);
@@ -84,9 +84,9 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
 
-    private void setName(RouteHolder holder, Route route) {
-        String routeName = "Route #" + String.valueOf(route.getId());
-        holder.textViewRouteName.setText(routeName);
+    private void setNumber(RouteHolder holder, Route route) {
+        String routeName = "#" + String.valueOf(route.getId()) + " ";
+        holder.textViewRouteNumber.setText(routeName);
 
     }
 
@@ -169,7 +169,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     class RouteHolder extends RecyclerView.ViewHolder {
-        private TextView textViewRouteName;
+        private TextView textViewRouteNumber;
         private CheckBox checkBoxWatched;
         private CheckBox checkBoxCompleted;
         private FrameLayout frameLayout;
@@ -177,7 +177,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         public RouteHolder(View itemView) {
             super(itemView);
-            textViewRouteName = itemView.findViewById(R.id.text_view_route_name);
+            textViewRouteNumber = itemView.findViewById(R.id.route_number);
             checkBoxWatched = itemView.findViewById(R.id.watchedCheckBox);
             checkBoxCompleted = itemView.findViewById(R.id.completedCheckBox);
             holdIcon = itemView.findViewById(R.id.hold_icon);

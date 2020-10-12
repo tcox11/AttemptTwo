@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_frame_route"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
     android:layout_marginTop="2dp"
     android:layout_marginEnd="4dp"
-    android:id="@+id/card_frame_route"
     android:layout_marginBottom="2dp"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="2dp">
@@ -18,35 +18,70 @@
         android:layout_marginEnd="4dp">
 
 
-        <TextView
-            android:id="@+id/text_view_route_name"
-            android:background="@color/cardColour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="60dp"
-            android:gravity="center"
-            android:ellipsize="end"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/textColor"
-            android:typeface="monospace" />
+
 
         <RelativeLayout
-            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="8dp">
-
-
-
+            android:layout_gravity="center_vertical"
+            android:background="@color/backgroundColour"
+            android:minHeight="80dp"
+            android:padding="8dp">
 
             <ImageView
-                android:src="@drawable/hold_image_ph"
                 android:id="@+id/hold_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:gravity="center_vertical" />
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"
+                android:padding="4dp"
+                android:src="@drawable/hold_image_ph" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/watchedCheckBox"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/hold_icon">
+
+                <RelativeLayout
+                    android:id="@+id/route_name_and_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/route_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="#??"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textColor="@color/textColor" />
+
+                    <TextView
+                        android:id="@+id/route_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/route_number"
+                        android:text="Route name"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textColor="@color/textColor" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/route_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/route_name_and_number"
+                    android:text="Route Description"
+                    android:textColor="@color/textColor" />
+
+
+            </RelativeLayout>
 
             <CheckBox
                 android:id="@+id/watchedCheckBox"
@@ -63,11 +98,7 @@
                 android:layout_alignParentEnd="true"
                 android:button="@drawable/completed_checkbox" />
 
-
-
         </RelativeLayout>
-
-
 
 
     </FrameLayout>
