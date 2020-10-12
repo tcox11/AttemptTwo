@@ -2,6 +2,7 @@ package com.example.attempttwo;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<Route> routes = new ArrayList<>();
     private OnWatchedClickListener watchedListener;
     private OnCompletedClickListener completedListener;
+    private OnRouteClickListener routeListener;
 
 
     @NonNull
@@ -221,11 +223,10 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             routeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int duration = Toast.LENGTH_SHORT;
-                    CharSequence text = "Clicked " + String.valueOf(routes.get(getAdapterPosition()).getId());
-
-                    Toast toast = Toast.makeText(v.getContext(), text, duration);
-                    toast.show();
+                    int position = getAdapterPosition();
+                    if (routeListener != null && position != RecyclerView.NO_POSITION) {
+                        routeListener.onItemClick(routes.get(position));
+                    }
                 }
             });
 
@@ -248,6 +249,14 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public void setOnItemCompletedClickListener(OnCompletedClickListener listener) {
         this.completedListener = listener;
+    }
+
+    public interface OnRouteClickListener{
+        void onItemClick(Route route);
+    }
+
+    public void setOnItemRouteClickListener(OnRouteClickListener listener){
+        this.routeListener = listener;
     }
 
 }

@@ -1,12 +1,16 @@
 package com.example.attempttwo;
 
 import android.content.Intent;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "route_table")
-public class Route {
+public class Route implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -33,6 +37,7 @@ public class Route {
         this.headerType = headerType;
 
     }
+
 
 
     public void setWatchlist(Integer watchlist) {
@@ -82,4 +87,43 @@ public class Route {
     public Integer getHeaderType() { return headerType; }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Parcelable.Creator<Route> CREATOR = new Parcelable.Creator<Route>(){
+        public Route createFromParcel(Parcel in){
+            return new Route(in);
+        }
+        public Route[] newArray(int size){
+            return new Route[size];
+        }
+
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(area);
+        dest.writeString(holdColour);
+        dest.writeString(grade);
+        dest.writeString(notes);
+        dest.writeInt(active);
+        dest.writeInt(watchlist);
+        dest.writeInt(completed);
+        dest.writeInt(headerType);
+    }
+
+    private Route(Parcel in){
+        id = in.readInt();
+        area = in.readString();
+        holdColour = in.readString();
+        grade = in.readString();
+        notes = in.readString();
+        active = in.readInt();
+        watchlist = in.readInt();
+        completed = in.readInt();
+        headerType = in.readInt();
+    }
 }

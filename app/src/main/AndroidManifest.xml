@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".EditRoute"></activity>
         <activity android:name=".RouteListWatched" />
         <activity android:name=".RouteListByGrade" />
         <activity android:name=".RouteListAll" />
