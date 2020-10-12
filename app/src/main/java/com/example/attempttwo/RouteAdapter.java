@@ -60,6 +60,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
             if (!emptyArea) {
+                setAreaIcon(holder, currentRoute);
                 holder.textViewHeader.setText(currentRoute.getArea());
             } else {
                 holder.textViewHeader.setText("");
@@ -69,7 +70,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             setName(holder, currentRoute);
             setBorder(holder, currentRoute);
             setHoldIcon(holder, currentRoute);
-            setAreaIcon(holder, currentRoute);
+            //setAreaIcon(holder, currentRoute);
             holder.checkBoxWatched.setChecked(currentRoute.getWatchlist() == 1);
             holder.checkBoxCompleted.setChecked(currentRoute.getCompleted() == 1);
         }
@@ -126,7 +127,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     }
 
-    private void setAreaIcon(RouteHolder holder, Route route) {
+    private void setAreaIcon(RouteHeaderHolder holder, Route route) {
         String areaName = route.getArea().toLowerCase().replaceAll(" ", "") + "_area";
         Log.d("area", areaName);
         int areaID = MyUtilites.getResId(areaName, R.drawable.class);
@@ -156,11 +157,13 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     class RouteHeaderHolder extends RecyclerView.ViewHolder {
         private TextView textViewHeader;
         private CardView headerCardView;
+        private ImageView areaIcon;
 
         public RouteHeaderHolder(View itemView) {
             super(itemView);
             textViewHeader = itemView.findViewById(R.id.route_header);
             headerCardView = itemView.findViewById(R.id.header_card_view);
+            areaIcon = itemView.findViewById(R.id.area_icon);
         }
 
     }
@@ -171,16 +174,14 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private CheckBox checkBoxCompleted;
         private FrameLayout frameLayout;
         private ImageView holdIcon;
-        private ImageView areaIcon;
 
         public RouteHolder(View itemView) {
             super(itemView);
             textViewRouteName = itemView.findViewById(R.id.text_view_route_name);
             checkBoxWatched = itemView.findViewById(R.id.watchedCheckBox);
             checkBoxCompleted = itemView.findViewById(R.id.completedCheckBox);
-            frameLayout = itemView.findViewById(R.id.card_frame_route);
             holdIcon = itemView.findViewById(R.id.hold_icon);
-            areaIcon = itemView.findViewById(R.id.area_icon);
+            frameLayout = itemView.findViewById(R.id.card_frame_route);
             checkBoxWatched.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

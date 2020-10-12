@@ -37,14 +37,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginEnd="8dp">
 
-            <ImageView
-                android:src="@drawable/hold_image_ph"
-                android:id="@+id/area_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginEnd="12dp"
-                android:gravity="center_vertical" />
+
 
 
             <ImageView
@@ -52,7 +45,7 @@
                 android:id="@+id/hold_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/area_icon"
+                android:layout_alignParentLeft="true"
                 android:gravity="center_vertical" />
 
             <CheckBox
