@@ -17,7 +17,11 @@
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp">
 
-
+        <Button
+            android:id="@+id/route_item_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stateListAnimator="@null"/>
 
 
         <RelativeLayout
@@ -28,75 +32,87 @@
             android:minHeight="80dp"
             android:padding="8dp">
 
-            <ImageView
-                android:id="@+id/hold_icon"
+            <RelativeLayout
+                android:id="@+id/route_item_lhs"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:gravity="center_vertical"
-                android:padding="4dp"
-                android:src="@drawable/hold_image_ph" />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/route_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="#??"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@color/textColor" />
+
+
+                <ImageView
+                    android:id="@+id/hold_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/route_number"
+                    android:gravity="center_vertical"
+                    android:padding="4dp"
+                    android:src="@drawable/hold_image_ph" />
+
+
+            </RelativeLayout>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/watchedCheckBox"
-                android:layout_marginStart="8dp"
-                android:layout_toEndOf="@id/hold_icon">
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toStartOf="@id/route_item_rhs"
+                android:layout_toEndOf="@id/route_item_lhs">
 
-                <RelativeLayout
-                    android:id="@+id/route_name_and_number"
-                    android:layout_width="match_parent"
+
+                <TextView
+                    android:id="@+id/route_name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginBottom="4dp">
+                    android:text="Route name"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@color/textColor" />
 
-                    <TextView
-                        android:id="@+id/route_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="#??"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textColor="@color/textColor" />
-
-                    <TextView
-                        android:id="@+id/route_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/route_number"
-                        android:text="Route name"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textColor="@color/textColor" />
-
-                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/route_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/route_name_and_number"
+                    android:layout_below="@id/route_name"
                     android:text="Route Description"
                     android:textColor="@color/textColor" />
 
 
             </RelativeLayout>
 
-            <CheckBox
-                android:id="@+id/watchedCheckBox"
+            <RelativeLayout
+                android:id="@+id/route_item_rhs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/completedCheckBox"
-                android:button="@drawable/watched_checkbox" />
+                android:layout_alignParentEnd="true">
+
+                <CheckBox
+                    android:id="@+id/watchedCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/watched_checkbox" />
 
 
-            <CheckBox
-                android:id="@+id/completedCheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:button="@drawable/completed_checkbox" />
+                <CheckBox
+                    android:id="@+id/completedCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/watchedCheckBox"
+                    android:button="@drawable/completed_checkbox" />
+
+
+
+            </RelativeLayout>
+
 
         </RelativeLayout>
 

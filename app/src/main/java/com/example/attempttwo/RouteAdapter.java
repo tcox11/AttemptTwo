@@ -6,11 +6,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -174,9 +176,12 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private CheckBox checkBoxCompleted;
         private FrameLayout frameLayout;
         private ImageView holdIcon;
+        private Button routeButton;
+
 
         public RouteHolder(View itemView) {
             super(itemView);
+            routeButton = itemView.findViewById(R.id.route_item_button);
             textViewRouteNumber = itemView.findViewById(R.id.route_number);
             checkBoxWatched = itemView.findViewById(R.id.watchedCheckBox);
             checkBoxCompleted = itemView.findViewById(R.id.completedCheckBox);
@@ -201,6 +206,17 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     if (completedListener != null && position != RecyclerView.NO_POSITION) {
                         completedListener.onItemClick(routes.get(position));
                     }
+                }
+            });
+
+            routeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int duration = Toast.LENGTH_SHORT;
+                    CharSequence text = "Clicked " + String.valueOf(routes.get(getAdapterPosition()).getId());
+
+                    Toast toast = Toast.makeText(v.getContext(), text, duration);
+                    toast.show();
                 }
             });
 
