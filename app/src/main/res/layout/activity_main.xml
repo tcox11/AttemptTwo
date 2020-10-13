@@ -24,7 +24,7 @@
             android:layout_marginBottom="4dp"
             android:minHeight="80dp"
             android:background="@color/cardColour"
-            android:text="View Routes By Grade"
+            android:text="Routes"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/textColor"
             android:typeface="monospace" />
