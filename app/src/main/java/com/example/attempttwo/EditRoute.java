@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class EditRoute extends AppCompatActivity {
     private TextView routeGrade;
     private EditText routeDescription;
     private EditText routeNotes;
+    private FrameLayout backingFrame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,9 @@ public class EditRoute extends AppCompatActivity {
         routeArea = findViewById(R.id.edit_route_area);
         routeDescription = findViewById(R.id.edit_route_description);
         routeNotes = findViewById(R.id.edit_route_notes);
+        backingFrame = findViewById(R.id.edit_route_back_frame);
 
+        backingFrame.setBackgroundResource(route.getColorID());
         routeNumber.setText(route.getIDDisplay());
         //routeName
 

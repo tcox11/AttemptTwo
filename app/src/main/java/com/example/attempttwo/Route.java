@@ -167,10 +167,10 @@ public class Route implements Parcelable {
             colorName = getGrade().substring(0, 2).toLowerCase() + "color";
             colorID = MyUtilites.getResId(colorName, R.color.class);
             if (colorID == -1) {
-                colorID = Color.parseColor("#FFFFFF");
+                colorID = R.color.cardColour;
             }
         } else {
-            colorID = Color.parseColor("#FFFFFF");
+            colorID = R.color.cardColour;
         }
 
         return colorID;

@@ -7,92 +7,105 @@
     android:background="@color/backgroundColour"
     tools:context=".EditRoute">
 
-    
-
-    <RelativeLayout
-        android:padding="8dp"
-        android:background="@color/cardColour"
+    <FrameLayout
+        android:id="@+id/edit_route_back_frame"
         android:layout_margin="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
 
         <RelativeLayout
-            android:id="@+id/edit_route_top_line"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:padding="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:background="@color/cardColour">
 
-            <TextView
-                android:textColor="@color/textColor"
-                android:layout_margin="4dp"
-                android:layout_centerVertical="true"
-                android:id="@+id/edit_route_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="#??"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+            <RelativeLayout
+                android:id="@+id/edit_route_top_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:textColor="@color/textColor"
-                android:id="@+id/edit_route_name"
+                <TextView
+                    android:id="@+id/edit_route_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="4dp"
+                    android:text="#??"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@color/textColor" />
+
+                <EditText
+                    android:id="@+id/edit_route_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/edit_route_number"
+                    android:hint="Route name"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@color/textColor" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/edit_route_line_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/edit_route_number"
-                android:hint="Route name"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                android:layout_below="@id/edit_route_top_line"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/edit_route_area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Route Area"
+                    android:textColor="@color/textColor" />
+
+                <TextView
+                    android:id="@+id/edit_route_hold_colour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Hold Colour"
+                    android:textColor="@color/textColor" />
+
+                <TextView
+                    android:id="@+id/edit_route_grade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Grade"
+                    android:textColor="@color/textColor" />
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/edit_route_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_route_line_2"
+                android:gravity="start"
+                android:hint="Route description"
+                android:minHeight="80dp"
+                android:textColor="@color/textColor" />
+
+            <EditText
+                android:id="@+id/edit_route_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_route_description"
+                android:gravity="start"
+                android:hint="Route notes"
+                android:minHeight="200dp"
+                android:textColor="@color/textColor" />
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/edit_route_line_2"
-            android:layout_below="@id/edit_route_top_line"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_weight="1"
-                android:textColor="@color/textColor"
-                android:id="@+id/edit_route_area"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Route Area"/>
-            <TextView
-                android:layout_weight="1"
-                android:textColor="@color/textColor"
-                android:hint="Hold Colour"
-                android:id="@+id/edit_route_hold_colour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_weight="1"
-                android:textColor="@color/textColor"
-                android:hint="Grade"
-                android:id="@+id/edit_route_grade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
-        </LinearLayout>
-
-
-
-        <EditText
-            android:textColor="@color/textColor"
-            android:hint="Route description"
-            android:gravity="start"
-            android:layout_below="@id/edit_route_line_2"
-            android:id="@+id/edit_route_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="80dp"/>
-        <EditText
-            android:id="@+id/edit_route_notes"
-            android:textColor="@color/textColor"
-            android:gravity="start"
-            android:hint="Route notes"
-            android:layout_below="@id/edit_route_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="200dp"/>
-
-    </RelativeLayout>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
