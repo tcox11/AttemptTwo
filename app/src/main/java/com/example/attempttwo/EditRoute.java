@@ -57,7 +57,6 @@ public class EditRoute extends AppCompatActivity {
         routeGrade.setText(route.getGrade());
         routeNotes.setText(route.getNotes());
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         setTitle("Edit Route");
     }
 
@@ -79,6 +78,7 @@ public class EditRoute extends AppCompatActivity {
 
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -89,6 +89,9 @@ public class EditRoute extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
             case R.id.save_route:
                 saveRoute();
                 return true;

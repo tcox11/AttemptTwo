@@ -77,14 +77,22 @@ public abstract class RouteList extends AppCompatActivity {
             // do stuff with route here
             if(returnedRoute!=null) {
                 routeViewModel.update(returnedRoute);
+                CharSequence text = "Changes saved successfully";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(RouteList.this, text, duration);
+                toast.show();
             } else{
-                CharSequence text = "Edit route not saved";
+                CharSequence text = "Changes not saved";
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(RouteList.this, text, duration);
                 toast.show();
             }
 
-
+        }else{
+            CharSequence text = "Changes not saved";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(RouteList.this, text, duration);
+            toast.show();
         }
     }
 
