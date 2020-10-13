@@ -69,7 +69,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 holder.areaIcon.getLayoutParams().height = (int) holder.areaIcon.getResources().getDimension(R.dimen.area_icon_height);
                 holder.areaIcon.getLayoutParams().width = (int) holder.areaIcon.getResources().getDimension(R.dimen.area_icon_width);
             }
-            
+
         } else {
 
             RouteHolder holder = (RouteHolder) viewHolder;

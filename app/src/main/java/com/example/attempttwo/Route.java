@@ -20,11 +20,6 @@ public class Route implements Parcelable {
     private String area;
     private String holdColour;
     private String grade;
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
     private String notes;
     private Integer active;
     private Integer watchlist;
@@ -45,6 +40,8 @@ public class Route implements Parcelable {
 
     }
 
+
+    public void setNotes(String notes) { this.notes = notes;  }
 
     public void setWatchlist(Integer watchlist) {
         this.watchlist = watchlist;

@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -43,10 +44,12 @@ public class EditRoute extends AppCompatActivity {
         routeDescription = findViewById(R.id.edit_route_description);
         routeNotes = findViewById(R.id.edit_route_notes);
 
-        routeNumber.setText("#" + String.valueOf(route.getId()));
-        holdColour.setText("Hold colour: " + route.getHoldColour());
-        routeArea.setText("Area: " + route.getArea());
-        routeGrade.setText("Grade: " + route.getGrade());
+        routeNumber.setText(route.getIDDisplay());
+        //routeName
+
+        routeArea.setText(route.getArea());
+        holdColour.setText(route.getHoldColour() + " holds");
+        routeGrade.setText(route.getGrade());
         routeNotes.setText(route.getNotes());
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
