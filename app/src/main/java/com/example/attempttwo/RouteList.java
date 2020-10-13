@@ -72,13 +72,19 @@ public abstract class RouteList extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==EDIT_ROUTE_REQUEST && resultCode==RESULT_OK){
-            Route returnedRoute = getIntent().getParcelableExtra(EditRoute.EXTRA_ROUTE);
-            // do stuff with route here
-            CharSequence text = "Edit route activity successful";
-            int duration = Toast.LENGTH_SHORT;
+            Route returnedRoute = data.getParcelableExtra(EditRoute.EXTRA_ROUTE);
 
-            Toast toast = Toast.makeText(RouteList.this, text, duration);
-            toast.show();
+            // do stuff with route here
+            if(returnedRoute!=null) {
+                routeViewModel.update(returnedRoute);
+            } else{
+                CharSequence text = "Edit route not saved";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(RouteList.this, text, duration);
+                toast.show();
+            }
+
+
         }
     }
 

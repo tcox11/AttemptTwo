@@ -3,6 +3,7 @@ package com.example.attempttwo;
 import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import java.io.Serializable;
 
@@ -18,6 +19,11 @@ public class Route implements Parcelable {
     private String area;
     private String holdColour;
     private String grade;
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
     private String notes;
     private Integer active;
     private Integer watchlist;
@@ -37,7 +43,6 @@ public class Route implements Parcelable {
         this.headerType = headerType;
 
     }
-
 
 
     public void setWatchlist(Integer watchlist) {
@@ -84,7 +89,9 @@ public class Route implements Parcelable {
         return completed;
     }
 
-    public Integer getHeaderType() { return headerType; }
+    public Integer getHeaderType() {
+        return headerType;
+    }
 
 
     @Override
@@ -92,11 +99,12 @@ public class Route implements Parcelable {
         return 0;
     }
 
-    public static final Parcelable.Creator<Route> CREATOR = new Parcelable.Creator<Route>(){
-        public Route createFromParcel(Parcel in){
+    public static final Parcelable.Creator<Route> CREATOR = new Parcelable.Creator<Route>() {
+        public Route createFromParcel(Parcel in) {
             return new Route(in);
         }
-        public Route[] newArray(int size){
+
+        public Route[] newArray(int size) {
             return new Route[size];
         }
 
@@ -115,7 +123,7 @@ public class Route implements Parcelable {
         dest.writeInt(headerType);
     }
 
-    private Route(Parcel in){
+    private Route(Parcel in) {
         id = in.readInt();
         area = in.readString();
         holdColour = in.readString();
@@ -125,5 +133,20 @@ public class Route implements Parcelable {
         watchlist = in.readInt();
         completed = in.readInt();
         headerType = in.readInt();
+    }
+
+    public void printRouteLog(String tag) {
+        String toPrint;
+        toPrint = "Route ID: " + String.valueOf(getId()) + "\n"
+                + "Area: " + getArea() + "\n"
+                + "Hold Colour: " + getHoldColour() + "\n"
+                + "Grade: " + getGrade() + "\n"
+                + "Notes: " + getNotes() + "\n"
+                + "Active: " + String.valueOf(getActive()) + "\n"
+                + "Watchlist: " + String.valueOf(getWatchlist()) + "\n"
+                + "Completed: " + String.valueOf(getCompleted()) + "\n"
+                + "Header type: " + String.valueOf(getHeaderType()) + "\n";
+        Log.d(tag, toPrint);
+
     }
 }

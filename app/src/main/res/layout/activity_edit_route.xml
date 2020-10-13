@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/edit_route_number"
-                android:hint="Route Name"
+                android:hint="Route name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
         </RelativeLayout>
@@ -74,7 +74,7 @@
 
         <EditText
             android:textColor="@color/textColor"
-            android:hint="Route Description"
+            android:hint="Route description"
             android:gravity="start"
             android:layout_below="@id/edit_route_line_2"
             android:id="@+id/edit_route_description"

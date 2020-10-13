@@ -32,6 +32,7 @@ public class EditRoute extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_route);
 
+
         route = getIntent().getParcelableExtra(EXTRA_ROUTE);
 
         routeNumber = findViewById(R.id.edit_route_number);
@@ -55,10 +56,13 @@ public class EditRoute extends AppCompatActivity {
     private void saveRoute(){
         String name = routeName.getText().toString();
         String description = routeDescription.getText().toString();
-        String notes = routeDescription.getText().toString();
+        String notes = routeNotes.getText().toString();
+
+        Route newRoute = route;
+        newRoute.setNotes(notes);
 
         Intent data = new Intent();
-        data.putExtra(EXTRA_ROUTE, route);
+        data.putExtra(EXTRA_ROUTE, newRoute);
         setResult(RESULT_OK, data);
         finish();
 
