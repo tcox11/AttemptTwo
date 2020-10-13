@@ -44,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/edit_route_number"
                     android:hint="Route name"
+                    android:maxLength="20"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                     android:textColor="@color/textColor" />
 

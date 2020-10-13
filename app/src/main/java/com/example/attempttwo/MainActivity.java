@@ -21,7 +21,6 @@ import java.util.List;
 // Made a new xml file for main activity. Don't know if it needs anythin added as it is the main xml
 public class MainActivity extends AppCompatActivity {
 
-    private Button goToViewAllRoutes;
     private Button goToRoutesByGrade;
     private Button goToWatchedRoutes;
     private TextView watchedMessage;
@@ -32,14 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        goToViewAllRoutes = (Button) findViewById(R.id.goToAllRoutes);
-        goToViewAllRoutes.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                openViewAllRoutes();
-            }
-
-        });
 
         goToRoutesByGrade = (Button) findViewById(R.id.goToRoutesByGrade);
         goToRoutesByGrade.setOnClickListener(new View.OnClickListener(){
@@ -49,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
 
         goToWatchedRoutes = (Button) findViewById(R.id.goToWatchedRoutes);
         goToWatchedRoutes.setOnClickListener(new View.OnClickListener(){
@@ -70,11 +60,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void openViewAllRoutes() {
-        Intent intent = new Intent(this, RouteListAll.class);
-        startActivity(intent);
     }
 
     private void openRoutesByGrade(){

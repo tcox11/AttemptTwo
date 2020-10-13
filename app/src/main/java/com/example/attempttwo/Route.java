@@ -56,7 +56,9 @@ public class Route implements Parcelable {
         this.ycoord = ycoord;
     }
 
-    public void setNotes(String notes) { this.notes = notes;  }
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 
     public void setWatchlist(Integer watchlist) {
         this.watchlist = watchlist;
@@ -238,8 +240,26 @@ public class Route implements Parcelable {
     }
 
     public String getNameDisplay() {
-        String nameDisplay = "Route " + String.valueOf(getId());
-        return nameDisplay;
+        if (!climberRouteName.trim().isEmpty()) {
+            return climberRouteName;
+        } else if (!setterRouteName.trim().isEmpty()) {
+            return setterRouteName;
+        } else {
+            String nameDisplay = "Route " + String.valueOf(getId());
+            return nameDisplay;
+        }
+    }
+
+    public String getDescriptionDisplay(){
+        if(!climberDescription.trim().isEmpty()){
+            return climberDescription;
+        } else if (!setterDescription.trim().isEmpty()){
+            return setterDescription;
+        } else {
+            Log.d("null", "returning null");
+            return null;
+        }
+
     }
 
     public int getColorID() {
@@ -273,7 +293,7 @@ public class Route implements Parcelable {
 
     }
 
-    public int getAreaIconID(){
+    public int getAreaIconID() {
         int iconID = R.drawable.missing_area_icon;
         String areaName = getArea().toLowerCase().replaceAll(" ", "") + "_area";
         int areaID = MyUtilites.getResId(areaName, R.drawable.class);

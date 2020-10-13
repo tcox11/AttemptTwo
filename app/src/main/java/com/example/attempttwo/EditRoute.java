@@ -49,7 +49,8 @@ public class EditRoute extends AppCompatActivity {
 
         backingFrame.setBackgroundResource(route.getColorID());
         routeNumber.setText(route.getIDDisplay());
-        //routeName
+        routeName.setText(route.getNameDisplay());
+        routeDescription.setText(route.getDescriptionDisplay());
 
         routeArea.setText(route.getArea());
         holdColour.setText(route.getHoldColour() + " holds");
@@ -66,8 +67,10 @@ public class EditRoute extends AppCompatActivity {
         String notes = routeNotes.getText().toString();
 
         Route newRoute = route;
-        newRoute.setNotes(notes);
 
+        newRoute.setNotes(notes);
+        newRoute.setClimberRouteName(name);
+        newRoute.setClimberDescription(description);
         Intent data = new Intent();
         data.putExtra(EXTRA_ROUTE, newRoute);
         setResult(RESULT_OK, data);
