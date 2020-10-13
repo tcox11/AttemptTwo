@@ -25,10 +25,18 @@ public class Route implements Parcelable {
     private Integer watchlist;
     private Integer completed;
     private Integer headerType;
+    private String dateSet;
+    private String dateCompleted;
+    private String setterDescription;
+    private String climberDescription;
+    private String setterRouteName;
+    private String climberRouteName;
+    private String holdType;
+    private String xcoord;
+    private String ycoord;
 
 
-    public Route(String area, String holdColour, String grade, String notes, Integer active,
-                 Integer watchlist, Integer completed, Integer headerType) {
+    public Route(String area, String holdColour, String grade, String notes, Integer active, Integer watchlist, Integer completed, Integer headerType, String dateSet, String dateCompleted, String setterDescription, String climberDescription, String setterRouteName, String climberRouteName, String holdType, String xcoord, String ycoord) {
         this.area = area;
         this.holdColour = holdColour;
         this.grade = grade;
@@ -37,9 +45,16 @@ public class Route implements Parcelable {
         this.watchlist = watchlist;
         this.completed = completed;
         this.headerType = headerType;
-
+        this.dateSet = dateSet;
+        this.dateCompleted = dateCompleted;
+        this.setterDescription = setterDescription;
+        this.climberDescription = climberDescription;
+        this.setterRouteName = setterRouteName;
+        this.climberRouteName = climberRouteName;
+        this.holdType = holdType;
+        this.xcoord = xcoord;
+        this.ycoord = ycoord;
     }
-
 
     public void setNotes(String notes) { this.notes = notes;  }
 
@@ -92,6 +107,55 @@ public class Route implements Parcelable {
     }
 
 
+    public void setDateCompleted(String dateCompleted) {
+        this.dateCompleted = dateCompleted;
+    }
+
+    public void setClimberDescription(String climberDescription) {
+        this.climberDescription = climberDescription;
+    }
+
+    public void setClimberRouteName(String climberRouteName) {
+        this.climberRouteName = climberRouteName;
+    }
+
+    public String getDateSet() {
+        return dateSet;
+    }
+
+    public String getDateCompleted() {
+        return dateCompleted;
+    }
+
+    public String getSetterDescription() {
+        return setterDescription;
+    }
+
+    public String getClimberDescription() {
+        return climberDescription;
+    }
+
+    public String getSetterRouteName() {
+        return setterRouteName;
+    }
+
+    public String getClimberRouteName() {
+        return climberRouteName;
+    }
+
+    public String getHoldType() {
+        return holdType;
+    }
+
+    public String getXcoord() {
+        return xcoord;
+    }
+
+    public String getYcoord() {
+        return ycoord;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -119,6 +183,15 @@ public class Route implements Parcelable {
         dest.writeInt(watchlist);
         dest.writeInt(completed);
         dest.writeInt(headerType);
+        dest.writeString(dateSet);
+        dest.writeString(dateCompleted);
+        dest.writeString(setterDescription);
+        dest.writeString(climberDescription);
+        dest.writeString(setterRouteName);
+        dest.writeString(climberRouteName);
+        dest.writeString(holdType);
+        dest.writeString(xcoord);
+        dest.writeString(ycoord);
     }
 
     private Route(Parcel in) {
@@ -131,6 +204,16 @@ public class Route implements Parcelable {
         watchlist = in.readInt();
         completed = in.readInt();
         headerType = in.readInt();
+        dateSet = in.readString();
+        dateCompleted = in.readString();
+        setterDescription = in.readString();
+        climberDescription = in.readString();
+        setterRouteName = in.readString();
+        climberRouteName = in.readString();
+        holdType = in.readString();
+        xcoord = in.readString();
+        ycoord = in.readString();
+
     }
 
     public void printRouteLog(String tag) {
@@ -143,7 +226,8 @@ public class Route implements Parcelable {
                 + "Active: " + String.valueOf(getActive()) + "\n"
                 + "Watchlist: " + String.valueOf(getWatchlist()) + "\n"
                 + "Completed: " + String.valueOf(getCompleted()) + "\n"
-                + "Header type: " + String.valueOf(getHeaderType()) + "\n";
+                + "Header type: " + String.valueOf(getHeaderType()) + "\n"
+                + "need to change print file if you want more info! \n";
         Log.d(tag, toPrint);
 
     }
