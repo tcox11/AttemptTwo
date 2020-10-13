@@ -64,17 +64,23 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
             if (!emptyArea) {
-                setAreaIcon(holder, currentRoute);
+                holder.areaIcon.setImageResource(currentRoute.getAreaIconID());
                 holder.textViewHeader.setText(currentRoute.getArea());
-            } else {
-                holder.textViewHeader.setText("");
+                holder.areaIcon.getLayoutParams().height = (int) holder.areaIcon.getResources().getDimension(R.dimen.area_icon_height);
+                holder.areaIcon.getLayoutParams().width = (int) holder.areaIcon.getResources().getDimension(R.dimen.area_icon_width);
             }
+            
         } else {
+
             RouteHolder holder = (RouteHolder) viewHolder;
-            setNumber(holder, currentRoute);
-            setName(holder, currentRoute);
-            setBorder(holder, currentRoute);
-            setHoldIcon(holder, currentRoute);
+            holder.textViewRouteNumber.setText(currentRoute.getIDDisplay());
+            holder.textViewRouteName.setText(currentRoute.getNameDisplay());
+            holder.frameLayout.setBackgroundResource(currentRoute.getColorID());
+            holder.holdIcon.setImageResource(currentRoute.getHoldIconID());
+
+            //resize.. maybe rewrite this
+            holder.holdIcon.getLayoutParams().height = (int) holder.holdIcon.getResources().getDimension(R.dimen.hold_icon_height);
+            holder.holdIcon.getLayoutParams().width = (int) holder.holdIcon.getResources().getDimension(R.dimen.hold_icon_width);
             //setAreaIcon(holder, currentRoute);
             holder.checkBoxWatched.setChecked(currentRoute.getWatchlist() == 1);
             holder.checkBoxCompleted.setChecked(currentRoute.getCompleted() == 1);
@@ -88,71 +94,6 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return routes.get(position).getHeaderType();
     }
 
-
-    private void setNumber(RouteHolder holder, Route route) {
-        String routeNumber = "#" + String.valueOf(route.getId());
-        holder.textViewRouteNumber.setText(routeNumber);
-
-    }
-
-    private void setName(RouteHolder holder, Route route) {
-        String routeName = "Route " + String.valueOf(route.getId());
-        holder.textViewRouteName.setText(routeName);
-
-    }
-
-    private void setBorder(RouteHolder holder, Route route) {
-        String colorName;
-
-        if (route.getGrade().length() > 2) {
-            colorName = route.getGrade().substring(0, 2).toLowerCase() + "color";
-            int colorID = MyUtilites.getResId(colorName, R.color.class);
-            if (colorID == -1) {
-                Log.d("hello", "missing colour");
-                holder.frameLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            } else {
-
-                Log.d("hello", "colour set correctly: " + colorName);
-                holder.frameLayout.setBackgroundResource(colorID);
-            }
-        } else {
-            Log.d("hello", "gradeLength too short");
-            holder.frameLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }
-
-
-    }
-
-    private void setHoldIcon(RouteHolder holder, Route route) {
-        String colorName = route.getHoldColour().toLowerCase().replaceAll("/", "") + "_hold";
-        int holdID = MyUtilites.getResId(colorName, R.drawable.class);
-        if (holdID == -1) {
-            Log.d("hello", "missing hold icon");
-            holder.holdIcon.setImageResource(R.drawable.missing_hold);
-        } else {
-            holder.holdIcon.setImageResource(holdID);
-        }
-
-        holder.holdIcon.getLayoutParams().height = (int) holder.holdIcon.getResources().getDimension(R.dimen.hold_icon_height);
-        holder.holdIcon.getLayoutParams().width = (int) holder.holdIcon.getResources().getDimension(R.dimen.hold_icon_width);
-
-    }
-
-    private void setAreaIcon(RouteHeaderHolder holder, Route route) {
-        String areaName = route.getArea().toLowerCase().replaceAll(" ", "") + "_area";
-        Log.d("area", areaName);
-        int areaID = MyUtilites.getResId(areaName, R.drawable.class);
-        if (areaID == -1) {
-            Log.d("hello", "missing hold icon");
-            //leave blank
-        } else {
-            holder.areaIcon.setImageResource(areaID);
-        }
-
-        holder.areaIcon.getLayoutParams().height = (int) holder.areaIcon.getResources().getDimension(R.dimen.area_icon_height);
-        holder.areaIcon.getLayoutParams().width = (int) holder.areaIcon.getResources().getDimension(R.dimen.area_icon_width);
-
-    }
 
     @Override
     public int getItemCount() {
@@ -251,11 +192,11 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         this.completedListener = listener;
     }
 
-    public interface OnRouteClickListener{
+    public interface OnRouteClickListener {
         void onItemClick(Route route);
     }
 
-    public void setOnItemRouteClickListener(OnRouteClickListener listener){
+    public void setOnItemRouteClickListener(OnRouteClickListener listener) {
         this.routeListener = listener;
     }
 

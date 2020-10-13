@@ -1,6 +1,7 @@
 package com.example.attempttwo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
@@ -148,5 +149,56 @@ public class Route implements Parcelable {
                 + "Header type: " + String.valueOf(getHeaderType()) + "\n";
         Log.d(tag, toPrint);
 
+    }
+
+    public String getIDDisplay() {
+        String idDisplay = "#" + String.valueOf(getId());
+        return idDisplay;
+    }
+
+    public String getNameDisplay() {
+        String nameDisplay = "Route " + String.valueOf(getId());
+        return nameDisplay;
+    }
+
+    public int getColorID() {
+
+        int colorID;
+        String colorName;
+
+        if (getGrade().length() > 2) {
+            colorName = getGrade().substring(0, 2).toLowerCase() + "color";
+            colorID = MyUtilites.getResId(colorName, R.color.class);
+            if (colorID == -1) {
+                colorID = Color.parseColor("#FFFFFF");
+            }
+        } else {
+            colorID = Color.parseColor("#FFFFFF");
+        }
+
+        return colorID;
+    }
+
+    public int getHoldIconID() {
+        int iconID = R.drawable.missing_hold;
+
+        String colorName = getHoldColour().toLowerCase().replaceAll("/", "") + "_hold";
+        int holdID = MyUtilites.getResId(colorName, R.drawable.class);
+        if (holdID != -1) {
+            iconID = holdID;
+        }
+
+        return iconID;
+
+    }
+
+    public int getAreaIconID(){
+        int iconID = R.drawable.missing_area_icon;
+        String areaName = getArea().toLowerCase().replaceAll(" ", "") + "_area";
+        int areaID = MyUtilites.getResId(areaName, R.drawable.class);
+        if (areaID != -1) {
+            iconID = areaID;
+        }
+        return iconID;
     }
 }
