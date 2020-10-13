@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,22 +53,35 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Route currentRoute = routes.get(position);
 
         if (type == 1) {
+
             Boolean emptyArea = Boolean.FALSE;
+            String whatwentwrong = "Nothing";
             RouteHeaderHolder holder = (RouteHeaderHolder) viewHolder;
 
             if (position == getItemCount() - 1) {
+                whatwentwrong = "last position";
                 // checks if last item is header, in which case removes from screen
                 emptyArea = Boolean.TRUE;
             } else if (position < getItemCount() - 1 && routes.get(position + 1).getHeaderType() == 1) {
                 //checks for two headers in a row
+                whatwentwrong = "next to header";
                 emptyArea = Boolean.TRUE;
             }
 
             if (!emptyArea) {
+                holder.headerCardView.setVisibility(View.VISIBLE);
+                holder.headerRelativeLayout.setVisibility(View.VISIBLE);
+                holder.areaIcon.setVisibility(View.VISIBLE);
+                holder.textViewHeader.setVisibility(View.VISIBLE);
                 holder.areaIcon.setImageResource(currentRoute.getAreaIconID());
                 holder.textViewHeader.setText(currentRoute.getArea());
                 holder.areaIcon.getLayoutParams().height = (int) holder.areaIcon.getResources().getDimension(R.dimen.area_icon_height);
                 holder.areaIcon.getLayoutParams().width = (int) holder.areaIcon.getResources().getDimension(R.dimen.area_icon_width);
+            } else {
+                holder.headerCardView.setVisibility(View.GONE);
+                holder.headerRelativeLayout.setVisibility(View.GONE);
+                holder.areaIcon.setVisibility(View.GONE);
+                holder.textViewHeader.setVisibility(View.GONE);
             }
 
         } else {
@@ -111,12 +125,14 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private TextView textViewHeader;
         private CardView headerCardView;
         private ImageView areaIcon;
+        private RelativeLayout headerRelativeLayout;
 
         public RouteHeaderHolder(View itemView) {
             super(itemView);
             textViewHeader = itemView.findViewById(R.id.route_header);
             headerCardView = itemView.findViewById(R.id.header_card_view);
             areaIcon = itemView.findViewById(R.id.area_icon);
+            headerRelativeLayout = itemView.findViewById(R.id.header_relative_layout);
         }
 
     }
@@ -147,6 +163,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 public void onClick(View v) {
                     Log.d("clicked", "clicked in adapater");
                     int position = getAdapterPosition();
+                    Log.d("whereCalled", "watch button called at position" + String.valueOf(position));
                     if (watchedListener != null && position != RecyclerView.NO_POSITION) {
                         watchedListener.onItemClick(routes.get(position));
                     }
