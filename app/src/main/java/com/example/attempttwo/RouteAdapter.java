@@ -88,7 +88,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             RouteHolder holder = (RouteHolder) viewHolder;
             holder.textViewRouteNumber.setText(currentRoute.getIDDisplay());
-            holder.textViewRouteName.setText(currentRoute.getNameDisplay());
+            //holder.textViewRouteName.setText(currentRoute.getNameDisplay());
             holder.frameLayout.setBackgroundResource(currentRoute.getColorID());
             holder.textViewRouteDescription.setText(currentRoute.getDescriptionDisplay());
             holder.holdIcon.setImageResource(currentRoute.getHoldIconID());
@@ -152,7 +152,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             super(itemView);
             routeButton = itemView.findViewById(R.id.route_item_button);
             textViewRouteNumber = itemView.findViewById(R.id.route_number);
-            textViewRouteName = itemView.findViewById(R.id.route_name);
+            //textViewRouteName = itemView.findViewById(R.id.route_name);
             textViewRouteDescription = itemView.findViewById(R.id.route_description);
             checkBoxWatched = itemView.findViewById(R.id.watchedCheckBox);
             checkBoxCompleted = itemView.findViewById(R.id.completedCheckBox);
